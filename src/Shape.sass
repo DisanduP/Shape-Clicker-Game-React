@@ -1,0 +1,214 @@
+$main-grad: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+$stat-bg: rgba(255,255,255,0.1);
+
+body, .game-root
+  font-family: 'Arial', sans-serif
+  background: $main-grad
+  min-height: 100vh
+  overflow: hidden
+  position: relative
+
+.container
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  min-height: 100vh
+  padding: 20px
+  position: relative
+  z-index: 10
+
+.game-area
+  position: relative
+  width: 80vw
+  height: 60vh
+  max-width: 800px
+  max-height: 600px
+  border: 2px solid rgba(255,255,255,0.3)
+  border-radius: 20px
+  background: rgba(255,255,255,0.1)
+  backdrop-filter: blur(10px)
+  margin-bottom: 30px
+  overflow: hidden
+  cursor: crosshair
+
+.stats
+  display: flex
+  gap: 20px
+  margin-bottom: 20px
+  color: white
+  flex-wrap: wrap
+  justify-content: center
+
+.stat
+  text-align: center
+  background: $stat-bg
+  padding: 15px 20px
+  border-radius: 15px
+  backdrop-filter: blur(10px)
+  border: 1px solid rgba(255,255,255,0.2)
+  min-width: 100px
+
+.stat-value
+  font-size: 1.3rem
+  font-weight: bold
+  display: block
+
+.stat-label
+  font-size: 0.8rem
+  opacity: 0.8
+  margin-top: 5px
+
+.background-shapes
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  overflow: hidden
+  z-index: 1
+
+.start-btn
+  background: rgba(255,255,255,0.2)
+  color: white
+  border: none
+  padding: 15px 30px
+  border-radius: 30px
+  cursor: pointer
+  font-size: 1.1rem
+  backdrop-filter: blur(10px)
+  border: 1px solid rgba(255,255,255,0.3)
+  transition: all 0.3s ease
+  margin-bottom: 20px
+  &:hover
+    background: rgba(255,255,255,0.3)
+    transform: translateY(-2px)
+
+.countdown
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  color: white
+  font-size: 4rem
+  font-weight: bold
+  text-shadow: 0 4px 8px rgba(0,0,0,0.5)
+  z-index: 100
+
+.shape
+  position: absolute
+  cursor: pointer
+  transition: all 0.2s ease
+  animation: shapeAppear 0.3s ease-out
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3))
+  &:hover
+    transform: scale(1.1)
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.4)) brightness(1.1)
+  &:active
+    transform: scale(0.9)
+
+@keyframes shapeAppear
+  0%
+    opacity: 0
+    transform: scale(0.3)
+  100%
+    opacity: 1
+    transform: scale(1)
+
+.circle
+  border-radius: 50%
+  background: linear-gradient(45deg, #ff6b6b, #ffd93d)
+
+.square
+  background: linear-gradient(45deg, #4ecdc4, #44a08d)
+
+.rectangle
+  background: linear-gradient(45deg, #a8edea, #fed6e3)
+
+.triangle
+  width: 0
+  height: 0
+  background: none
+
+.triangle.small
+  border-left: 25px solid transparent
+  border-right: 25px solid transparent
+  border-bottom: 43px solid #ff9a9e
+
+.triangle.medium
+  border-left: 35px solid transparent
+  border-right: 35px solid transparent
+  border-bottom: 61px solid #ff9a9e
+
+.triangle.large
+  border-left: 45px solid transparent
+  border-right: 45px solid transparent
+  border-bottom: 78px solid #ff9a9e
+
+.diamond
+  transform: rotate(45deg)
+  background: linear-gradient(45deg, #ffecd2, #fcb69f)
+
+.hexagon
+  background: linear-gradient(45deg, #667eea, #764ba2)
+  position: relative
+
+.hexagon:before,
+.hexagon:after
+  content: ""
+  position: absolute
+  width: 0
+  border-left: 25px solid transparent
+  border-right: 25px solid transparent
+
+.hexagon:before
+  bottom: 100%
+  border-bottom: 14px solid #667eea
+
+.hexagon:after
+  top: 100%
+  border-top: 14px solid #764ba2
+
+.reaction-time
+  position: absolute
+  color: white
+  font-size: 1.5rem
+  font-weight: bold
+  pointer-events: none
+  z-index: 1000
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5)
+  animation: reactionEffect 2s ease-out forwards
+
+@keyframes reactionEffect
+  0%
+    opacity: 1
+    transform: translateY(0) scale(1)
+  100%
+    opacity: 0
+    transform: translateY(-40px) scale(1.2)
+
+.miss-effect
+  position: absolute
+  color: #ff6b6b
+  font-size: 1.8rem
+  font-weight: bold
+  pointer-events: none
+  z-index: 1000
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5)
+  animation: missEffect 1.5s ease-out forwards
+
+@keyframes missEffect
+  0%
+    opacity: 1
+    transform: translateY(0) scale(1)
+  100%
+    opacity: 0
+    transform: translateY(-30px) scale(1.3)
+
+.perfect-bonus
+  color: #ffd93d !important
+  text-shadow: 0 0 10px #ffd93d
+
+.fast-bonus
+  color: #4ecdc4 !important
+  text-shadow: 0 0 10px #4ecdc4
